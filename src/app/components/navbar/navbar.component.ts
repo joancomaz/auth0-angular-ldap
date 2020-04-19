@@ -13,4 +13,8 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  login() {
+    console.log('Botón login pulsado');
+  }
+
 }
