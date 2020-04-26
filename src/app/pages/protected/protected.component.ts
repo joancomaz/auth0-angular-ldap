@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-protected',
@@ -8,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProtectedComponent implements OnInit {
 
-  constructor() { }
+  constructor(public auth: AuthService) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.auth.userProfile$.subscribe( profile => {
+      console.log(profile);
+    });
   }
 
 }

@@ -9,11 +9,12 @@
         <a class="nav-link" [routerLink]="['public-page-2']">Public page 2 </a>
       </li>
       <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" [routerLink]="['protected-page']">Protected page </a>
+        <a class="nav-link" [routerLink]="['protected-page']" *ngIf="auth.loggedIn">Protected page</a>
       </li>
     </ul>
     <span class="navbar-text">
-      <button (click)="login()" class="btn btn-warning" type="submit">Login</button>
+      <button (click)="auth.login()" class="btn btn-warning" *ngIf="!auth.loggedIn">Login</button>
+      <button (click)="auth.logout()" class="btn btn-danger" *ngIf="auth.loggedIn">Logout</button>
     </span>
   </div>
 </nav>
