@@ -1,27 +1,29 @@
-# AuthAngularLdap
+# Auth0 Angular LDAP integration
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.1.
+Este proyecto simple de Angular 9 permite acceder a una página protegida a través de autenticación LDAP. 
 
-## Development server
+Se ha utilizado la plataforma *Auth0* que permite realizar la autenticación a través de cualquier proveedor de identidad conocido (Google, Facebook, etc.) y/o a través de diferentes conexiones que permite configurar, como LDAP, GSuite, Azure, etc.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Notas:
 
-## Code scaffolding
+* Deben instalar la carpeta *npm_modules* a través del comando `npm install` una vez tengan el proyecto clonado.
+* Se han configurado tres rutas, dos públicas y una privada a la que solo se puede acceder a través del botón *Login* del *navbar* e introduciendo el usuario y contraseña del directorio activo de su empresa.
+* Existe una carpeta *components* para los componentes compartidos.
+* Existe una carpeta *pages* para las páginas públicas y privadas.
+* Existe una carpeta *services* para el servicio de autenticación de *Auth0* y el guard que protege la página privada.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+> Y lo más importante, seguir las instrucciones que aparecen a continuación para configurar la autenticación LDAP en la plataforma *Auth0*.
 
-## Build
+### Configurar la conexión LDAP en Auth0
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+1. En el caso de no estar registrado, crear una cuenta en https://auth0.com/.
+2. Crear una aplicación de tipo *Single Page Web Applications* con el nombre que deseen.
+3. En la página de configuración del proyecto se habrán generado los parámetros de usuario de manera automática, únicamente deberán añadir la información de su servidor de desarrollo y puerto (en general, http://localhost:4200 en los proyectos de Angular) en los siguientes campos:
+![Configuración aplicación Auth0](https://i.ibb.co/q1TGK72/auth0.jpg)
+4. Una vez configurada la aplicación, crear la conexión: Connections > Enterprise > Active Directory / LDAP y seguir las instrucciones según su sistema operativo.
+> NOTA: si utilizan Windows deberán descargarse un ejecutable y así realizar la configuración (LDAP Connection String, Base DN, Username y Password)
 
-## Running unit tests
+En las instrucciones de la plataforma se especifica todo lo anterior de manera detallada, no deberían tener problemas. Por último, no olviden habilitar la aplicación creada en el punto 2 en la conexión creada en el punto 4:
+![Habilitar aplicación en la conexión LDAP](https://i.ibb.co/FhKYW8y/auth0-1.jpg)
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Espero que les sea de gran ayuda para sus proyectos! :smile:
